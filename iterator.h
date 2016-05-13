@@ -3,7 +3,8 @@
 
 #include "base_iterator.h"
 
-class Iterator : BaseIterator
+template <typename type_t>
+class Iterator : public BaseIterator<type_t>
 {
 public:
 private:

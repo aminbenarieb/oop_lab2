@@ -3,7 +3,7 @@
 
 #include "base_list.h"
 
-class List : BaseList
+class List : public BaseList
 {
 public:
 private:
