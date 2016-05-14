@@ -17,4 +17,5 @@ HEADERS += \
     iterator.h \
     base_list.h \
     base_iterator.h \
-    node.h
+    node.h \
+    iterator_const.h
