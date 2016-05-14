@@ -4,8 +4,8 @@
 template <typename type_t>
 struct Node
 {
-    Node *left;
-    Node *right;
+    Node  *prev;
+    Node  *next;
     type_t data;
 };
 
