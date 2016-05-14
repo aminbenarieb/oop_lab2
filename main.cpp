@@ -12,7 +12,6 @@ int main()
     try
     {
         List<int> list(3, 1, 2, 3);
-        cout << list << endl;
     }
     catch(ErrorList &error)
     {

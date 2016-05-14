@@ -18,4 +18,5 @@ HEADERS += \
     node.h \
     iterator_const.h \
     error_iterator.h \
-    error_list.h
+    error_list.h \
+    _list.h
