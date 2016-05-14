@@ -9,7 +9,7 @@ public:
     virtual size_t size() const = 0;
 
 protected:
-    size_t count;
+    size_t length;
 };
 
 #endif // BASE_LIST_H
