@@ -12,9 +12,10 @@ TEMPLATE = app
 SOURCES += main.cpp
 
 HEADERS += \
-    error.h \
     list.h \
     iterator.h \
     base_list.h \
     node.h \
-    iterator_const.h
+    iterator_const.h \
+    error_iterator.h \
+    error_list.h

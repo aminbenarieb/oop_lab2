@@ -1,9 +1,9 @@
-#ifndef ERROR_H
-#define ERROR_H
+#ifndef ERROR_LIST_H
+#define ERROR_LIST_H
 
 #include <exception>
 
-class Error : public std::exception
+class ErrorList : public std::exception
 {
 public:
     virtual const char* print_description()
@@ -14,4 +14,4 @@ public:
 
 
 
-#endif // ERROR_H
+#endif // ERROR_LIST_H
