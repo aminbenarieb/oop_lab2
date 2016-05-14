@@ -30,10 +30,10 @@ public:
     List<type_t>& operator+=(const List<type_t> &right);         // (?)
     List<type_t>  operator--(type_t);                            // (?)
     List<type_t>& operator--();                                  // (?)
-    type_t& operator=(const type_t&);
-    bool    operator!() const;                                   // (?)
-    bool    operator==(const List<type_t> &right) const;         // (?)
-    bool    operator!=(const List<type_t> &right) const;         // (?)
+    type_t&       operator=(const type_t&);
+    bool          operator!() const;                             // (?)
+    bool          operator==(const List<type_t> &right) const;   // (?)
+    bool          operator!=(const List<type_t> &right) const;   // (?)
 
     friend class Iterator<type_t>;
     friend class IteratorConst<type_t>;
