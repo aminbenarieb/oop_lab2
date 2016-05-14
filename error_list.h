@@ -12,6 +12,34 @@ public:
     }
 };
 
+class ErrorMemory : public ErrorList
+{
+public:
+    virtual const char* print_description()
+    {
+        return "Unable to allocate memory.";
+    }
+};
+
+class ErrorLink : public ErrorList
+{
+public:
+    virtual const char* print_description()
+    {
+        return "Unable to get data with given link.";
+    }
+};
+
+class ErrorPop : public ErrorList
+{
+
+public:
+    const char* out()
+    {
+        return "Unable to pop last element.";
+    }
+
+};
 
 
 #endif // ERROR_LIST_H
