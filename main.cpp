@@ -12,12 +12,13 @@ int main()
     try
     {
         List<int> list(3, 1, 2, 3);
+        cout << list << endl;
     }
     catch(ErrorList &error)
     {
         cout << error.print_description()<<endl;
     }
-    catch(ErrorIterator &error)
+    catch(ExeptionIterator &error)
     {
         cout << error.print_description()<<endl;
     }

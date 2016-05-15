@@ -361,5 +361,17 @@ bool List<type_t>::operator!=(const List<type_t> &right) const
     return false;
 }
 
+template<typename type_t>
+std::ostream& operator<<(std::ostream& stream, List<type_t>& right)
+{
+    IteratorConst<type_t> iterator(right);
+
+    while (iterator.isInit())
+    {
+        stream << *(iterator++) << " ";
+    }
+    stream << '\n';
+    return stream;
+}
 
 #endif // _LIST_H

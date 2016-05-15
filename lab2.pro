@@ -19,4 +19,6 @@ HEADERS += \
     iterator_const.h \
     error_iterator.h \
     error_list.h \
-    _list.h
+    _list.h \
+    _iterator.h \
+    _iterator_const.h

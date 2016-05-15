@@ -3,8 +3,8 @@
 
 #include "base_list.h"
 #include "error_list.h"
-//#include "iterator.h"
-//#include "iterator_const.h"
+#include "iterator.h"
+#include "iterator_const.h"
 
 template <typename type_t>
 class List : BaseList
@@ -37,9 +37,8 @@ public:
     bool          operator!=(const List<type_t> &) const;
 
 
-
-    //friend class Iterator<type_t>;
-    //friend class IteratorConst<type_t>;
+    friend class Iterator<type_t>;
+    friend class IteratorConst<type_t>;
 
 private:
     Node<type_t>* head;

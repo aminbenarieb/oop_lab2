@@ -13,11 +13,11 @@ public:
 
     bool    isNULL();
     bool    isInit();
-    type_t& value();
     void    move_to_prev();
     void    move_to_next();
     void    move_to_head();
     void    move_to_tail();
+    const type_t& value();
 
 
     IteratorConst<type_t>&   operator =(const IteratorConst<type_t>&);
@@ -35,9 +35,11 @@ public:
 
 
 private:
-    Node <type_t>* currentItem;
+    const Node <type_t>* currentItem;
     const List <type_t>* list;
 
 };
 
 #endif // ITERATOR_CONST_H
+
+#include "_iterator_const.h"

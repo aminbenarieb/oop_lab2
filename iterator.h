@@ -1,6 +1,8 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
 
+#include "error_iterator.h"
+
 template <class type_t>struct Node;
 template <class type_t>class List;
 
@@ -45,4 +47,4 @@ private:
 
 #endif // ITERATOR_H
 
-//#include "_iterator.h"
+#include "_iterator.h"
