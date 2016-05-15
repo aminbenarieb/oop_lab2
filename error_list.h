@@ -3,7 +3,7 @@
 
 #include <exception>
 
-class ErrorList : public std::exception
+class ExceptionList : public std::exception
 {
 public:
     virtual const char* print_description()
@@ -12,7 +12,7 @@ public:
     }
 };
 
-class ErrorMemory : public ErrorList
+class ExceptionMemory : public ExceptionList
 {
 public:
     virtual const char* print_description()
@@ -21,7 +21,7 @@ public:
     }
 };
 
-class ErrorLink : public ErrorList
+class ExceptionLink : public ExceptionList
 {
 public:
     virtual const char* print_description()
@@ -30,7 +30,7 @@ public:
     }
 };
 
-class ErrorPop : public ErrorList
+class ExceptionPop : public ExceptionList
 {
 
 public:

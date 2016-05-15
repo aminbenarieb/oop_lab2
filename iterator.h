@@ -14,15 +14,14 @@ public:
     ~Iterator();
 
     bool    isNULL();
-    bool    isInit();
-    void    del(bool key);
-    void    add(type_t data, bool key);
-    void    set(type_t& data);
+    void    pop();
+    void    push(type_t, bool);
+    void    set(type_t&);
     type_t& value();
-    void    move_to_prev();
-    void    move_to_next();
-    void    move_to_head();
-    void    move_to_tail();
+    void    prev();
+    void    next();
+    void    begin();
+    void    end();
 
 
     Iterator<type_t>&   operator =(const Iterator<type_t>&);

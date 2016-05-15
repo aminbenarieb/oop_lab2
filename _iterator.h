@@ -16,63 +16,57 @@ Iterator<type_t>::~Iterator()
 }
 
 template <typename type_t>
-bool Iterator<type_t>::isNULL()
-{
-    return this->list && this->list->empty();
-}
-
-template <typename type_t>
 bool Iterator<type_t>::operator!()
 {
-    return this->isInit();
+    return this->isNULL();
 }
 
 template <typename type_t>
-bool Iterator<type_t>::isInit()
+bool Iterator<type_t>::isNULL()
 {
-    return this->currentItem != NULL;
+    return this->currentItem == NULL;
 }
 
 template <typename type_t>
-void Iterator<type_t>::add(type_t data, bool key)
+void Iterator<type_t>::push(type_t data, bool before)
 {
-    this->list->insert(this->currentItem, data, key);
+    this->list->insert(this->currentItem, data, before);
 }
 
 template <typename type_t>
-void Iterator<type_t>::del(bool key)
+void Iterator<type_t>::pop()
 {
-    if (this->isInit())
+    if (!this->isNULL())
     {
-        this->list->eject(this->currentItem, key);
+        this->list->eject(this->currentItem);
     }
 }
 
 template <typename type_t>
-void Iterator<type_t>::move_to_head()
+void Iterator<type_t>::begin()
 {
     this->currentItem = this->list->head();
 }
 
 template <typename type_t>
-void Iterator<type_t>::move_to_tail()
+void Iterator<type_t>::end()
 {
     this->currentItem = this->list->tail();
 }
 
 template <typename type_t>
-void Iterator<type_t>::move_to_next()
+void Iterator<type_t>::next()
 {
-    if (this->isInit())
+    if (!this->isNULL())
     {
         this->currentItem = currentItem->next;
     }
 }
 
 template <typename type_t>
-void Iterator<type_t>::move_to_prev()
+void Iterator<type_t>::prev()
 {
-    if (this->isInit())
+    if (!this->isNULL())
     {
         this->currentItem = currentItem->prev;
     }
@@ -81,7 +75,7 @@ void Iterator<type_t>::move_to_prev()
 template <typename type_t>
 void Iterator<type_t>::set(type_t& data)
 {
-    if (!this->ready())
+    if (this->isNULL())
     {
         throw ExceptionRange();
     }
@@ -95,17 +89,17 @@ type_t& Iterator<type_t>::value()
 }
 
 template <typename type_t>
-Iterator<type_t>& Iterator<type_t>::operator=(const Iterator<type_t>& right)
+Iterator<type_t>& Iterator<type_t>::operator=(const Iterator<type_t>& iterator)
 {
-    this->currentItem = right.currentItem;
-    this->list = right.list;
+    this->currentItem = iterator.currentItem;
+    this->list = iterator.list;
     return *this;
 }
 
 template <typename type_t>
 Iterator<type_t>& Iterator<type_t>::operator++()
 {
-    this->move_to_next();
+    this->next();
     return *this;
 }
 
@@ -130,7 +124,7 @@ Iterator<type_t>& Iterator<type_t>::operator+=(const size_t n)
 template <typename type_t>
 Iterator<type_t>& Iterator<type_t>::operator--()
 {
-    this->move_to_prev();
+    this->prev();
     return *this;
 }
 
@@ -155,7 +149,7 @@ Iterator<type_t>& Iterator<type_t>::operator-=(const size_t n)
 template <typename type_t>
 type_t& Iterator<type_t>::operator*()
 {
-    if (!this->isInit())
+    if (this->isNULL())
     {
         throw ExceptionRange();
     }
@@ -169,23 +163,23 @@ void Iterator<type_t>::operator<<(type_t& data)
 }
 
 template <typename type_t>
-bool Iterator<type_t>::operator==(const Iterator<type_t> &right) const
+bool Iterator<type_t>::operator==(const Iterator<type_t> &iterator) const
 {
-    if (this->list != right.list)
+    if (this->list != iterator.list)
     {
         throw ExceptionComparison();
     }
-    return this->currentItem == right.currentItem;
+    return this->currentItem == iterator.currentItem;
 }
 
 template <typename type_t>
-bool Iterator<type_t>::operator!=(const Iterator<type_t> &right) const
+bool Iterator<type_t>::operator!=(const Iterator<type_t> &iterator) const
 {
-    if (this->list != right.list)
+    if (this->list != iterator.list)
     {
         throw ExceptionComparison();
     }
-    return this->currentItem != right.currentItem;
+    return this->currentItem != iterator.currentItem;
 }
 
 #endif // _ITERATOR_H

@@ -3,7 +3,7 @@
 
 #include <exception>
 
-class ExeptionIterator : public std::exception
+class ExceptionIterator : public std::exception
 {
 public:
     virtual const char* print_description()
@@ -12,7 +12,7 @@ public:
     }
 };
 
-class ExceptionRange : public ExeptionIterator
+class ExceptionRange : public ExceptionIterator
 {
 public:
     const char* print_description()
@@ -22,7 +22,7 @@ public:
 
 };
 
-class ExceptionComparison: public ExeptionIterator
+class ExceptionComparison: public ExceptionIterator
 {
 public:
     const char* print_description()

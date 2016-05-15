@@ -16,48 +16,42 @@ IteratorConst<type_t>::~IteratorConst()
 }
 
 template <typename type_t>
-bool IteratorConst<type_t>::isNULL()
-{
-    return this->list && this->list->empty();
-}
-
-template <typename type_t>
 bool IteratorConst<type_t>::operator!()
 {
-    return this->isInit();
+    return this->isNULL();
 }
 
 template <typename type_t>
-bool IteratorConst<type_t>::isInit()
+bool IteratorConst<type_t>::isNULL()
 {
-    return this->currentItem != NULL;
+    return this->currentItem == NULL;
 }
 
 template <typename type_t>
-void IteratorConst<type_t>::move_to_head()
+void IteratorConst<type_t>::begin()
 {
     this->currentItem = this->list->head();
 }
 
 template <typename type_t>
-void IteratorConst<type_t>::move_to_tail()
+void IteratorConst<type_t>::end()
 {
     this->currentItem = this->list->tail();
 }
 
 template <typename type_t>
-void IteratorConst<type_t>::move_to_next()
+void IteratorConst<type_t>::next()
 {
-    if (this->isInit())
+    if (!this->isNULL())
     {
         this->currentItem = currentItem->next;
     }
 }
 
 template <typename type_t>
-void IteratorConst<type_t>::move_to_prev()
+void IteratorConst<type_t>::prev()
 {
-    if (this->isInit())
+    if (!this->isNULL())
     {
         this->currentItem = currentItem->prev;
     }
@@ -70,17 +64,17 @@ const type_t& IteratorConst<type_t>::value()
 }
 
 template <typename type_t>
-IteratorConst<type_t>& IteratorConst<type_t>::operator=(const IteratorConst<type_t>& right)
+IteratorConst<type_t>& IteratorConst<type_t>::operator=(const IteratorConst<type_t>& iterator)
 {
-    this->currentItem = right.currentItem;
-    this->list = right.list;
+    this->currentItem = iterator.currentItem;
+    this->list = iterator.list;
     return *this;
 }
 
 template <typename type_t>
 IteratorConst<type_t>& IteratorConst<type_t>::operator++()
 {
-    this->move_to_next();
+    this->next();
     return *this;
 }
 
@@ -105,7 +99,7 @@ IteratorConst<type_t>& IteratorConst<type_t>::operator+=(const size_t n)
 template <typename type_t>
 IteratorConst<type_t>& IteratorConst<type_t>::operator--()
 {
-    this->move_to_prev();
+    this->prev();
     return *this;
 }
 
@@ -130,7 +124,7 @@ IteratorConst<type_t>& IteratorConst<type_t>::operator-=(const size_t n)
 template <typename type_t>
 const type_t& IteratorConst<type_t>::operator*()
 {
-    if (!this->isInit())
+    if (this->isNULL())
     {
         throw ExceptionRange();
     }
@@ -144,25 +138,24 @@ void IteratorConst<type_t>::operator<<(type_t& data)
 }
 
 template <typename type_t>
-bool IteratorConst<type_t>::operator==(const IteratorConst<type_t> &right) const
+bool IteratorConst<type_t>::operator==(const IteratorConst<type_t> &iterator) const
 {
-    if (this->list != right.list)
+    if (this->list != iterator.list)
     {
         throw ExceptionComparison();
     }
-    return this->currentItem == right.currentItem;
+    return this->currentItem == iterator.currentItem;
 }
 
 template <typename type_t>
-bool IteratorConst<type_t>::operator!=(const IteratorConst<type_t> &right) const
+bool IteratorConst<type_t>::operator!=(const IteratorConst<type_t> &iterator) const
 {
-    if (this->list != right.list)
+    if (this->list != iterator.list)
     {
         throw ExceptionComparison();
     }
-    return this->currentItem != right.currentItem;
+    return this->currentItem != iterator.currentItem;
 }
-
 
 
 #endif // _ITERATOR_CONST_H

@@ -79,13 +79,13 @@ void List<type_t>::push_front(type_t data)
 }
 
 template <typename type_t>
-void List<type_t>::insert(Node<type_t>* link, type_t data, int key)
+void List<type_t>::insert(Node<type_t>* link, type_t data, bool before)
 {
     Node<type_t>* newItem;
     newItem = new Node<type_t>;
     if (!newItem)
     {
-        throw ErrorMemory();
+        throw ExceptionMemory();
     }
 
     newItem->data = data;
@@ -96,7 +96,7 @@ void List<type_t>::insert(Node<type_t>* link, type_t data, int key)
 
     if (item == NULL && this->size() != 0)
     {
-        throw ErrorLink();
+        throw ExceptionLink();
     }
 
     if (item == NULL)
@@ -106,24 +106,26 @@ void List<type_t>::insert(Node<type_t>* link, type_t data, int key)
     }
     else
     {
-        bool first = false;
+        bool isHead = false;
 
-        if (key)
+        if (before)
         {
-            if (item->prev != NULL)
+            if (!(isHead = item->prev == NULL))
             {
                 item = item->prev;
             }
-            else
-            {
-                first = true;
-            }
         }
 
-        if (!first)
+
+        if (isHead)
+        {
+            newItem->next = item;
+            item->prev = newItem;
+            this->head = newItem;
+        }
+        else
         {
             newItem->prev = item;
-            newItem->next = NULL;
             if (item->next)
             {
                 newItem->next = item->next;
@@ -131,16 +133,10 @@ void List<type_t>::insert(Node<type_t>* link, type_t data, int key)
             }
             else
             {
+                newItem->next = NULL;
                 this->tail = newItem;
             }
             item->next = newItem;
-        }
-        else
-        {
-            newItem->prev = NULL;
-            newItem->next = item;
-            item->prev = newItem;
-            this->head = newItem;
         }
     }
     this->length++;
@@ -149,48 +145,23 @@ void List<type_t>::insert(Node<type_t>* link, type_t data, int key)
 template <typename type_t>
 void List<type_t>::pop_front()
 {
-    if (!this->head->next)
-    {
-        throw ErrorPop();
-    }
-    eject(this->head->next, true);
+    eject(this->head);
 }
 
 template <typename type_t>
 void List<type_t>::pop_back()
 {
-    if (!this->tail->prev)
-    {
-        throw ErrorPop();
-    }
-    eject(this->tail->prev, false);
+    eject(this->tail);
 }
 
 template <typename type_t>
-void List<type_t>::eject(Node<type_t>* link, bool key)
+void List<type_t>::eject(Node<type_t>* link)
 {
     Node<type_t>* item = link;
 
     if (item == NULL)
     {
-        throw ErrorLink();
-    }
-
-    if (key)
-    {
-        if (item->prev == NULL)
-        {
-            throw ErrorLink();
-        }
-        item = item->prev;
-    }
-    else
-    {
-        if (item->next == NULL)
-        {
-            throw ErrorLink();
-        }
-        item = item->next;
+        throw ExceptionLink();
     }
 
     if (item->prev && item->next)
@@ -246,13 +217,13 @@ bool List<type_t>::operator!() const
 }
 
 template <typename type_t>
-List<type_t>& List<type_t>::operator=(List<type_t> &&right)
+List<type_t>& List<type_t>::operator=(List<type_t> &&list)
 {
-    if (*this != right)
+    if (*this != list)
     {
         this->clear();
 
-        Node<type_t>* item = right.head;
+        Node<type_t>* item = list.head;
 
         while (item != NULL)
         {
@@ -264,13 +235,13 @@ List<type_t>& List<type_t>::operator=(List<type_t> &&right)
 }
 
 template <typename type_t>
-List<type_t>& List<type_t>::operator=(const List<type_t> &right)
+List<type_t>& List<type_t>::operator=(const List<type_t> &list)
 {
-    if (*this != right)
+    if (*this != list)
     {
         this->clear();
 
-        Node<type_t>* item = right.head;
+        Node<type_t>* item = list.head;
 
         while (item != NULL)
         {
@@ -282,12 +253,12 @@ List<type_t>& List<type_t>::operator=(const List<type_t> &right)
 }
 
 template <typename type_t>
-List<type_t> List<type_t>::operator+(const List<type_t> &right) const
+List<type_t> List<type_t>::operator+(const List<type_t> &list) const
 {
     List<type_t> result = *this;
 
     Node<type_t>* item;
-    item = right.head;
+    item = list.head;
 
     while (item)
     {
@@ -298,10 +269,10 @@ List<type_t> List<type_t>::operator+(const List<type_t> &right) const
 }
 
 template <typename type_t>
-List<type_t>& List<type_t>::operator+=(const List<type_t> &right)
+List<type_t>& List<type_t>::operator+=(const List<type_t> &list)
 {
     Node<type_t>* item;
-    item = right.head;
+    item = list.head;
     while (item)
     {
         this->push_back(item->data);
@@ -323,14 +294,14 @@ List<type_t>& List<type_t>::operator--()
 }
 
 template <typename type_t>
-bool List<type_t>::operator==(const List<type_t> &right) const
+bool List<type_t>::operator==(const List<type_t> &list) const
 {
-    if (this->length != right.length)
+    if (this->length != list.length)
     {
         return false;
     }
     Node<type_t>* item1 = this->head;
-    Node<type_t>* item2 = right.head;
+    Node<type_t>* item2 = list.head;
     while (item1  && item1->data != item2->data)
     {
         item1 = item1->next;
@@ -341,14 +312,14 @@ bool List<type_t>::operator==(const List<type_t> &right) const
 }
 
 template <typename type_t>
-bool List<type_t>::operator!=(const List<type_t> &right) const
+bool List<type_t>::operator!=(const List<type_t> &list) const
 {
-    if (this->length != right.length)
+    if (this->length != list.length)
     {
         return true;
     }
     Node<type_t>* item1 = this->head;
-    Node<type_t>* item2 = right.head;
+    Node<type_t>* item2 = list.head;
     while (item1 && item2)
     {
         if (item1->data != item2->data)
@@ -362,11 +333,11 @@ bool List<type_t>::operator!=(const List<type_t> &right) const
 }
 
 template<typename type_t>
-std::ostream& operator<<(std::ostream& stream, List<type_t>& right)
+std::ostream& operator<<(std::ostream& stream, List<type_t>& list)
 {
-    IteratorConst<type_t> iterator(right);
+    IteratorConst<type_t> iterator(list);
 
-    while (iterator.isInit())
+    while (!iterator.isNULL())
     {
         stream << *(iterator++) << " ";
     }

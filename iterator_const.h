@@ -12,11 +12,10 @@ public:
     ~IteratorConst();
 
     bool    isNULL();
-    bool    isInit();
-    void    move_to_prev();
-    void    move_to_next();
-    void    move_to_head();
-    void    move_to_tail();
+    void    prev();
+    void    next();
+    void    begin();
+    void    end();
     const type_t& value();
 
 
@@ -28,7 +27,7 @@ public:
     IteratorConst<type_t>    operator --(type_t);                        // it--
     IteratorConst<type_t>&   operator -=(const size_t);
     const type_t&            operator *();
-    void                     operator <<(type_t& data);
+    void                     operator <<(type_t&);
     bool                     operator !=(const IteratorConst<type_t>&) const;
     bool                     operator ==(const IteratorConst<type_t>&) const;
     bool                     operator !();

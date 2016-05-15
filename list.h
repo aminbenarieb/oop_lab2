@@ -9,6 +9,7 @@
 template <typename type_t>
 class List : BaseList
 {
+
 public:
     List();
     List(List<type_t>&&);
@@ -20,7 +21,7 @@ public:
     void push_front (type_t);
     void pop_front  ();
 
-    void eject(Node <type_t>*, bool key);
+    void eject(Node <type_t>*);
 
     void clear();
 
@@ -40,14 +41,15 @@ public:
     friend class Iterator<type_t>;
     friend class IteratorConst<type_t>;
 
-private:
-    Node<type_t>* head;
-    Node<type_t>* tail;
 
+private:
     List(const List<type_t>&);
 
     List<type_t>& operator=(const List<type_t> &);
-    void insert(Node<type_t>*, type_t, int);
+    void insert(Node<type_t>*, type_t, bool);
+
+    Node<type_t>* head;
+    Node<type_t>* tail;
 };
 
 #endif // LIST_H
