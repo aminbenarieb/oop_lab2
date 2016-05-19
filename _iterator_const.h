@@ -18,11 +18,11 @@ IteratorConst<type_t>::~IteratorConst()
 template <typename type_t>
 bool IteratorConst<type_t>::operator!()
 {
-    return this->isNULL();
+    return this->isDone();
 }
 
 template <typename type_t>
-bool IteratorConst<type_t>::isNULL()
+bool IteratorConst<type_t>::isDone()
 {
     return this->currentItem == NULL;
 }
@@ -42,7 +42,7 @@ void IteratorConst<type_t>::end()
 template <typename type_t>
 void IteratorConst<type_t>::next()
 {
-    if (!this->isNULL())
+    if (!this->isDone())
     {
         this->currentItem = currentItem->next;
     }
@@ -51,7 +51,7 @@ void IteratorConst<type_t>::next()
 template <typename type_t>
 void IteratorConst<type_t>::prev()
 {
-    if (!this->isNULL())
+    if (!this->isDone())
     {
         this->currentItem = currentItem->prev;
     }
@@ -124,7 +124,7 @@ IteratorConst<type_t>& IteratorConst<type_t>::operator-=(const size_t n)
 template <typename type_t>
 const type_t& IteratorConst<type_t>::operator*()
 {
-    if (this->isNULL())
+    if (this->isDone())
     {
         throw ExceptionRange();
     }
@@ -157,5 +157,10 @@ bool IteratorConst<type_t>::operator!=(const IteratorConst<type_t> &iterator) co
     return this->currentItem != iterator.currentItem;
 }
 
+template <typename type_t>
+const type_t* IteratorConst<type_t>::operator ->() const
+{
+    return &(this->currentItem.data);
+}
 
 #endif // _ITERATOR_CONST_H

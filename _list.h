@@ -337,7 +337,7 @@ std::ostream& operator<<(std::ostream& stream, List<type_t>& list)
 {
     IteratorConst<type_t> iterator(list);
 
-    while (!iterator.isNULL())
+    while (!iterator.isDone())
     {
         stream << *(iterator++) << " ";
     }

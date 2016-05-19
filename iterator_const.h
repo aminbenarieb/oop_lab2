@@ -11,7 +11,7 @@ public:
     IteratorConst(const List<type_t> &);
     ~IteratorConst();
 
-    bool    isNULL();
+    bool    isDone();
     void    prev();
     void    next();
     void    begin();
@@ -27,6 +27,7 @@ public:
     IteratorConst<type_t>    operator --(type_t);                        // it--
     IteratorConst<type_t>&   operator -=(const size_t);
     const type_t&            operator *();
+    const type_t*            operator ->() const;
     void                     operator <<(type_t&);
     bool                     operator !=(const IteratorConst<type_t>&) const;
     bool                     operator ==(const IteratorConst<type_t>&) const;

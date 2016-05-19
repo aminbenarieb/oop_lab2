@@ -13,7 +13,7 @@ public:
     Iterator(List<type_t> &);
     ~Iterator();
 
-    bool    isNULL();
+    bool    isDone();
     void    pop();
     void    push(type_t, bool);
     void    set(type_t&);
@@ -32,6 +32,7 @@ public:
     Iterator<type_t>    operator --(type_t);                         // it--
     Iterator<type_t>&   operator -=(const size_t);
     type_t&             operator *();
+    const type_t*       operator ->() const;
     void                operator <<(type_t& data);
     bool                operator !=(const Iterator<type_t>&) const;
     bool                operator ==(const Iterator<type_t>&) const;
