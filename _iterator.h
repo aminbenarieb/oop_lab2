@@ -159,7 +159,7 @@ type_t& Iterator<type_t>::operator*()
 template <typename type_t>
 void Iterator<type_t>::operator<<(type_t& data)
 {
-    this->update(data);
+    this->set(data);
 }
 
 template <typename type_t>

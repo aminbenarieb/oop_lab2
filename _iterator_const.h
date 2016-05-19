@@ -132,12 +132,6 @@ const type_t& IteratorConst<type_t>::operator*()
 }
 
 template <typename type_t>
-void IteratorConst<type_t>::operator<<(type_t& data)
-{
-    this->update(data);
-}
-
-template <typename type_t>
 bool IteratorConst<type_t>::operator==(const IteratorConst<type_t> &iterator) const
 {
     if (this->list != iterator.list)

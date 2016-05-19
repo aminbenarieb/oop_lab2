@@ -21,28 +21,27 @@ public:
     void push_front (type_t);
     void pop_front  ();
 
-    void eject(Node <type_t>*);
-
     void clear();
 
     virtual size_t size() const override;
     bool empty() const;
+    bool operator!() const;
 
     List<type_t>  operator+(const List<type_t> &) const;
     List<type_t>& operator+=(const List<type_t> &);
-    List<type_t>& operator--(type_t);
-    List<type_t>& operator--();
     List<type_t>& operator=(List<type_t> &&);
-    bool          operator!() const;
+
     bool          operator==(const List<type_t> &) const;
     bool          operator!=(const List<type_t> &) const;
 
+    friend std::ostream& operator<<(std::ostream&, const List<type_t>&);
 
     friend class Iterator<type_t>;
     friend class IteratorConst<type_t>;
 
 
 private:
+    void eject(Node <type_t>*);
     List(const List<type_t>&);
 
     List<type_t>& operator=(const List<type_t> &);

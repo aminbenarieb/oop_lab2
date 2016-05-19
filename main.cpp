@@ -30,7 +30,6 @@ int main()
         list = List<int>(4, 2, 0, 1, 6);
         cout << list << endl;
 
-
     }
     catch(ExceptionList &error)
     {

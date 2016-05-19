@@ -14,15 +14,21 @@ public:
     ~Iterator();
 
     bool    isDone();
+    bool    operator !();
+
     void    pop();
     void    push(type_t, bool);
+
     void    set(type_t&);
+    void    operator <<(type_t&);
+
     type_t& value();
+    type_t& operator *();
+
     void    prev();
     void    next();
     void    begin();
     void    end();
-
 
     Iterator<type_t>&   operator =(const Iterator<type_t>&);
     Iterator<type_t>&   operator ++();								 // ++it
@@ -31,12 +37,12 @@ public:
     Iterator<type_t>&   operator --();								 // --it
     Iterator<type_t>    operator --(type_t);                         // it--
     Iterator<type_t>&   operator -=(const size_t);
-    type_t&             operator *();
+
     const type_t*       operator ->() const;
-    void                operator <<(type_t& data);
+
     bool                operator !=(const Iterator<type_t>&) const;
     bool                operator ==(const Iterator<type_t>&) const;
-    bool                operator !();
+
 
 
 private:

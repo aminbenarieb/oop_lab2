@@ -281,18 +281,6 @@ List<type_t>& List<type_t>::operator+=(const List<type_t> &list)
 }
 
 template <typename type_t>
-List<type_t>& List<type_t>::operator--(type_t)
-{
-    this->pop_back();
-}
-
-template <typename type_t>
-List<type_t>& List<type_t>::operator--()
-{
-    this->pop_front();
-}
-
-template <typename type_t>
 bool List<type_t>::operator==(const List<type_t> &list) const
 {
     if (this->length != list.length)
@@ -332,7 +320,7 @@ bool List<type_t>::operator!=(const List<type_t> &list) const
 }
 
 template<typename type_t>
-std::ostream& operator<<(std::ostream& stream, List<type_t>& list)
+std::ostream& operator<<(std::ostream& stream, const List<type_t>& list)
 {
     IteratorConst<type_t> iterator(list);
 
