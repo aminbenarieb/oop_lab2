@@ -10,13 +10,13 @@ List<type_t>::List()
 }
 
 template <typename type_t>
-List<type_t>::List(const List<type_t>& object)
+List<type_t>::List(const List<type_t>& list)
 {
     this->head = NULL;
     this->tail = NULL;
     this->length = 0;
 
-    Node<type_t>* item = object.head;
+    Node<type_t>* item = list.head;
 
     while (item != NULL)
     {
@@ -26,13 +26,13 @@ List<type_t>::List(const List<type_t>& object)
 }
 
 template <typename type_t>
-List<type_t>::List(List<type_t>&& object)
+List<type_t>::List(List<type_t>&& list)
 {
     this->head = NULL;
     this->tail = NULL;
     this->length = 0;
 
-    Node<type_t>* item = object.head;
+    Node<type_t>* item = list.head;
 
     while (item != NULL)
     {
@@ -257,8 +257,7 @@ List<type_t> List<type_t>::operator+(const List<type_t> &list) const
 {
     List<type_t> result = *this;
 
-    Node<type_t>* item;
-    item = list.head;
+    Node<type_t>* item = list.head;
 
     while (item)
     {
