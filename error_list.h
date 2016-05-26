@@ -1,9 +1,9 @@
 #ifndef ERROR_LIST_H
 #define ERROR_LIST_H
 
-#include <exception>
+#include "base_error.h"
 
-class ExceptionList : public std::exception
+class ExceptionList : BaseException
 {
 public:
     virtual const char* print_description()

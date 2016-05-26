@@ -31,14 +31,9 @@ int main()
         cout << list << endl;
 
     }
-    catch(ExceptionList &error)
+    catch(BaseException &error)
     {
         cout << error.print_description()<<endl;
     }
-    catch(ExceptionIterator &error)
-    {
-        cout << error.print_description()<<endl;
-    }
-
     return 0;
 }

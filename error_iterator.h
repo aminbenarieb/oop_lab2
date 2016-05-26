@@ -1,9 +1,9 @@
 #ifndef ERROR_ITERATOR_H
 #define ERROR_ITERATOR_H
 
-#include <exception>
+#include "base_error.h"
 
-class ExceptionIterator : public std::exception
+class ExceptionIterator : BaseException
 {
 public:
     virtual const char* print_description()
@@ -15,7 +15,7 @@ public:
 class ExceptionRange : public ExceptionIterator
 {
 public:
-    const char* print_description()
+    virtual const char* print_description()
     {
         return "Attempt to apply item out of range!";
     }
@@ -25,7 +25,7 @@ public:
 class ExceptionComparison: public ExceptionIterator
 {
 public:
-    const char* print_description()
+    virtual const char* print_description()
     {
         return "Unable to compare different copies's types of lists!";
     }

@@ -21,4 +21,5 @@ HEADERS += \
     error_list.h \
     _list.h \
     _iterator.h \
-    _iterator_const.h
+    _iterator_const.h \
+    base_error.h
