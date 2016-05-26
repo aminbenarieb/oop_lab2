@@ -24,6 +24,7 @@ public:
     void clear();
 
     virtual size_t size() const override;
+
     bool empty() const;
     bool operator!() const;
 
@@ -34,17 +35,16 @@ public:
     bool          operator==(const List<type_t> &) const;
     bool          operator!=(const List<type_t> &) const;
 
-    friend std::ostream& operator<<(std::ostream&, const List<type_t>&);
-
     friend class Iterator<type_t>;
     friend class IteratorConst<type_t>;
 
 
 private:
-    void eject(Node <type_t>*);
     List(const List<type_t>&);
 
     List<type_t>& operator=(const List<type_t> &);
+
+    void eject(Node <type_t>*);
     void insert(Node<type_t>*, type_t, bool);
 
     Node<type_t>* head;
