@@ -23,7 +23,7 @@ int main()
         Iterator <int> iterator(list);
         for (int i = -4; i < 0; i++)
         {
-            iterator.push(i, true);
+            iterator.add(i, true);
         }
         cout << list << endl;
 
@@ -31,9 +31,11 @@ int main()
         cout << list << endl;
 
     }
-    catch(BaseException &error)
+    catch(std::exception &error)
     {
-        cout << error.print_description()<<endl;
+        cout << error.what()<<endl;
     }
+
+
     return 0;
 }

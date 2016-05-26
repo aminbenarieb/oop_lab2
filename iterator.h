@@ -16,8 +16,8 @@ public:
     bool    isDone();
     bool    operator !();
 
-    void    pop();
-    void    push(type_t, bool);
+    void    del();
+    void    add(type_t, bool);
 
     void    set(type_t&);
     void    operator <<(type_t&);
@@ -40,8 +40,8 @@ public:
 
     const type_t*       operator ->() const;
 
-    bool                operator !=(const Iterator<type_t>&) const;
-    bool                operator ==(const Iterator<type_t>&) const;
+    bool                operator !=(const Iterator<type_t>&);
+    bool                operator ==(const Iterator<type_t>&);
 
 
 

@@ -6,7 +6,7 @@
 class ExceptionList : BaseException
 {
 public:
-    virtual const char* print_description()
+    virtual const char* what()
     {
         return "Unknown error occurred.";
     }
@@ -15,7 +15,7 @@ public:
 class ExceptionMemory : public ExceptionList
 {
 public:
-    virtual const char* print_description()
+    virtual const char* what()
     {
         return "Unable to allocate memory.";
     }
@@ -24,7 +24,7 @@ public:
 class ExceptionLink : public ExceptionList
 {
 public:
-    virtual const char* print_description()
+    virtual const char* what()
     {
         return "Unable to get data with given link.";
     }
@@ -34,7 +34,7 @@ class ExceptionPop : public ExceptionList
 {
 
 public:
-    const char* out()
+    const char* what()
     {
         return "Unable to pop last element.";
     }

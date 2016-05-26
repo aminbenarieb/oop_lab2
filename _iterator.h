@@ -28,13 +28,13 @@ bool Iterator<type_t>::isDone()
 }
 
 template <typename type_t>
-void Iterator<type_t>::push(type_t data, bool before)
+void Iterator<type_t>::add(type_t data, bool before)
 {
     this->list->insert(this->currentItem, data, before);
 }
 
 template <typename type_t>
-void Iterator<type_t>::pop()
+void Iterator<type_t>::del()
 {
     if (!this->isDone())
     {
@@ -163,7 +163,7 @@ void Iterator<type_t>::operator<<(type_t& data)
 }
 
 template <typename type_t>
-bool Iterator<type_t>::operator==(const Iterator<type_t> &iterator) const
+bool Iterator<type_t>::operator==(const Iterator<type_t> &iterator)
 {
     if (this->list != iterator.list)
     {
@@ -173,7 +173,7 @@ bool Iterator<type_t>::operator==(const Iterator<type_t> &iterator) const
 }
 
 template <typename type_t>
-bool Iterator<type_t>::operator!=(const Iterator<type_t> &iterator) const
+bool Iterator<type_t>::operator!=(const Iterator<type_t> &iterator)
 {
     if (this->list != iterator.list)
     {

@@ -6,7 +6,7 @@
 class ExceptionIterator : BaseException
 {
 public:
-    virtual const char* print_description()
+    virtual const char* what()
     {
         return "Unknown error occurred.";
     }
@@ -15,7 +15,7 @@ public:
 class ExceptionRange : public ExceptionIterator
 {
 public:
-    virtual const char* print_description()
+    virtual const char* what()
     {
         return "Attempt to apply item out of range!";
     }
@@ -25,7 +25,7 @@ public:
 class ExceptionComparison: public ExceptionIterator
 {
 public:
-    virtual const char* print_description()
+    virtual const char* what()
     {
         return "Unable to compare different copies's types of lists!";
     }

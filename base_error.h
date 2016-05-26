@@ -5,7 +5,7 @@
 class BaseException :  std::exception
 {
 public:
-    virtual const char* print_description()
+    virtual const char* what()
     {
         return "Unknown error occurred.";
     }
